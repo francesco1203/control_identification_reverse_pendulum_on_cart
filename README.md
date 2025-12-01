@@ -8,7 +8,7 @@ Controllo e identificazione pendolo inverso su cart / Control-Identification-Rev
 
 (IT) : Identificare il sistema instabile e non lineare. Poi controllarlo con tecnica MPC
 
-(EN) : Identify the instable and non-linear system. Then control it with MPC control
+(EN) : Identify the instable and non-linear system. Then control it using MPC control
 
 ---
 
