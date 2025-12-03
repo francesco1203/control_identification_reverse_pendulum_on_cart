@@ -3,5 +3,8 @@
 # Ignora la cartella slprj
 slprj
 
+# Ignora la cartella image
+Image
+
 # Ignora tutti i file con estensione .slxc
 ./*.slxc
