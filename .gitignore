@@ -7,4 +7,4 @@ slprj
 Image
 
 # Ignora tutti i file con estensione .slxc
-./*.slxc
+*.slxc

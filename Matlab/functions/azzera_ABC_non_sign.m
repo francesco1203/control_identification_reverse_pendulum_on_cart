@@ -15,6 +15,7 @@ function [A_rid, B_rid, C_rid] = azzera_ABC_non_sign(A, B, C, non_sign_A, non_si
     %elimina coefficienti non significativi 
     A_rid = A;
     if ~isempty(non_sign_A)  %controlla se ci sono coeff. da azzerare
+       non_sign_A = non_sign_A + 1; %perché la A parte sempre da 1, non riferito a z^-1
        A_rid(non_sign_A) = 0;
     end
 
@@ -25,7 +26,8 @@ function [A_rid, B_rid, C_rid] = azzera_ABC_non_sign(A, B, C, non_sign_A, non_si
 
     C_rid = C;
     if ~isempty(non_sign_C)
-        C_rid(non_sign_C) = 0;
+        non_sign_C = non_sign_C + 1; %perché la C parte sempre da 1, non riferito a z^-1
+        C_rid(non_sign_C) = 0; 
     end
  
     
