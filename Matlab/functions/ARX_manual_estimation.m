@@ -2,7 +2,7 @@
 % Stima i parametri di un modello ARX usando il metodo dei minimi quadrati.
 %
 
-function [a_coeff, b_coeff] = ARX_manual_estimation(y, u, na, nb)
+function [a_coeff, b_coeff, DevStd_a, DevStd_b] = ARX_manual_estimation(y, u, na, nb)
     % INPUTS:
     %   y (vettore): Dati di output misurati (risposta del sistema).
     %   u (vettore): Dati di input noti (eccitazione).
@@ -11,7 +11,8 @@ function [a_coeff, b_coeff] = ARX_manual_estimation(y, u, na, nb)
     %
     % OUTPUT:
     %   teta_cappello (vettore): Vettore dei parametri stimati [a1...ana, b1...bnb]'.
-    %
+    %   DevStd: vettore delle deviazioni standard dei parametri
+
 
     % 1. Lunghezza dei dati (N)
     N = length(y);
@@ -57,6 +58,7 @@ function [a_coeff, b_coeff] = ARX_manual_estimation(y, u, na, nb)
         Y(k) = y(t);
     end
 
+
     % 5. Implementazione della Formula LS
     % teta_cappello = (Phi' * Phi)^-1 * Phi' * Y
     
@@ -67,11 +69,44 @@ function [a_coeff, b_coeff] = ARX_manual_estimation(y, u, na, nb)
     teta_cappello = S_N \ (Phi' * Y); 
 
 
-    %split in a e b
+    % 6. split in a e b
     a_coeff = teta_cappello(1:na);
     a_coeff = [1; a_coeff];         %aggiungo l'1 iniziale di A
 
     b_coeff = teta_cappello(na+1:end);
     b_coeff = [0; b_coeff];         %aggiungo lo 0 inziiale di B (u(t))
+
+
+    % 6. Calcolo di lambda_cappello^2
+
+    % Residui di predizione (epsilon)
+    % epsilon = Y - Phi * teta_cappello
+    epsilon = Y - Phi * teta_cappello;
+    
+    % Varianza del rumore stimata (lambda_cappello^2)
+    % (1/N) * sommatoria(epsilon^2)
+    sum_epsilon = epsilon' * epsilon;
+    lambda_cappello_quadro = (1 / N) * sum_epsilon; 
+    
+    
+    % 7. Calcolo della matrice di covarianza
+
+    % Matrice di Covarianza stimata
+    % MatCov = lambda_cappello^2 * S(N)^-1
+    %MatCov = inv(S_N) * lambda_cappello_quadro ;
+    MatCov = S_N \ eye(size(S_N)) * lambda_cappello_quadro ;
+
+
+    % 8. Estrazioni delle varianze e dunque delle devstd come radici
+    VarTeta = diag(MatCov);  %elementi su diagonale = varianze di teta
+
+    DevStd = sqrt(VarTeta);  %deviazioni standard
+
+
+    % 9. split in a e b
+    DevStd_a = DevStd(1:na);
+    DevStd_b = DevStd(na+1:end);
+    
+
     
 end
