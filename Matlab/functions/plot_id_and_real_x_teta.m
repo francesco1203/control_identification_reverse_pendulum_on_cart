@@ -1,13 +1,11 @@
 
-% Plot dei risultati simulazione del simulink di validazione
-
 function plot_id_and_real_x_teta(simOut, ss_too)
     %   Genera un grafico a doppio subplot per i dati di simulazione
     %   per il confronto identificato e sistema vero
     %
     %   Input:
     %   simOut - Oggetto Simulink.SimulationOutput (risultato della simulazione).
-    %   ss_too - booleano che indica se devo stampare anche risultati in
+    %   ss_too - booleano che indica se devo stampare anche risultati dell'identificazione in
     %            spazio di stato
     
     

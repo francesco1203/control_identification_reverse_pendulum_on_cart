@@ -2,6 +2,11 @@
 
 function set_input_simulink_trs(teta_zero_input, x_rif_step_amp_input, x_rif_step_time_input, dF_step_amp_input, dF_step_time_input)
 
+    %controllo di validità degli ingressi
+    if(x_rif_step_time_input < 0 || dF_step_time_input < 0)
+        error('Input times must be non-negative.');
+    end
+
     %teta_zero (scostamento iniziale)
     assignin('base', 'teta_zero', teta_zero_input);
 

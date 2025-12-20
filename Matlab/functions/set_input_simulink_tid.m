@@ -9,7 +9,12 @@ function set_input_simulink_tid(stp_tim_u_in, stp_amp_u_in, sin_frq_u_in, sin_am
     % parametri step a d
     % parametri impulso a d
 
+    %controllo di validità degli ingressi
+    if(stp_tim_u_in < 0 || sin_frq_u_in <0 || stp_tim_d_in < 0 ||  imp_dur_d_in < 0)
+        error('Input times must be non-negative.');
+    end
     
+
     %riferimento u
     assignin('base', 'stp_tim_u', stp_tim_u_in);
     assignin('base', 'stp_amp_u', stp_amp_u_in);

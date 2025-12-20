@@ -1,8 +1,7 @@
-%
-% Stima i parametri di un modello ARX usando il metodo dei minimi quadrati.
-%
 
 function [a_coeff, b_coeff, DevStd_a, DevStd_b] = ARX_manual_estimation(y, u, na, nb)
+    % Stima i parametri di un modello ARX usando il metodo dei minimi quadrati.
+    %
     % INPUTS:
     %   y (vettore): Dati di output misurati (risposta del sistema).
     %   u (vettore): Dati di input noti (eccitazione).
@@ -10,7 +9,7 @@ function [a_coeff, b_coeff, DevStd_a, DevStd_b] = ARX_manual_estimation(y, u, na
     %   nb (scalare): Ordine della parte esogena (numero di ritardi di u).
     %
     % OUTPUT:
-    %   teta_cappello (vettore): Vettore dei parametri stimati [a1...ana, b1...bnb]'.
+    %   teta_cappello (vettore): Vettore dei parametri stimati [a1...ana, b1...bnb]' 
     %   DevStd: vettore delle deviazioni standard dei parametri
 
 

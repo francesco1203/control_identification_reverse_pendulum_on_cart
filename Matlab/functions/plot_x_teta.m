@@ -1,4 +1,3 @@
-%Plotta i dati di simulazione, x e teta
 
 function plot_x_teta(simOut)
     % Genera un grafico a doppio subplot per i dati di simulazione
@@ -6,7 +5,7 @@ function plot_x_teta(simOut)
     %
     %
     %   Input:
-    %     simOut - Oggetto Simulink.SimulationOutput (risultato della simulazione).
+    %   simOut - Oggetto Simulink.SimulationOutput (risultato della simulazione).
     
     % --- 1. Estrazione dei dati ---
     try

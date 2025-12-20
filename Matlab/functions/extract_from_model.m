@@ -1,9 +1,11 @@
-%Funzione di gestione del modello: estrai i coefficienti
+
 
 function [A, B, C, Ts] = extract_from_model(model)
-
+    %Funzione di gestione del modello: estrai i coefficienti
+    %
     % Input:
-    % model = estratto da SI Tbox
+    % model = estratto da SysId Toolbox
+    %
     % Output:
     % A, B, C, Ts = parametri del modello
     
